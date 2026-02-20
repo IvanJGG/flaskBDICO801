@@ -2,11 +2,11 @@
 
 <td>{{ field.label }}</td>
 <dd>{{ field(**kwargs) | safe }}</dd>
-{%% if field.errors %}
+{% if field.errors %}
     <ul class="errors">
-    {%% for error in field.errors %}
+    {% for error in field.errors %}
         <li>{{ error }}</li>
-    {%% endfor %}
+    {% endfor %}
     </ul>
 {% endif %}
-{%endmacro%}
+{% endmacro %}
