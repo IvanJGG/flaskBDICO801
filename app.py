@@ -18,9 +18,10 @@ def index():
 	alumno=Alumnos.query.all()
 	return render_template("index.html", form=creat_alumno, alumno=alumno)
 
-@app.route("/maestros", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
+@app.route("/maestros")
 def maestros():
-	creat_maestro=forms.MaestroForm(request.form)
+	creat_maestro=forms.UserForm(request.form)
 	maestros=Maestros.query.all()
 	return render_template("maestros.html", form=creat_maestro, maestros=maestros)
 
