@@ -18,12 +18,11 @@ def index():
 	alumno=Alumnos.query.all()
 	return render_template("index.html", form=creat_alumno, alumno=alumno)
 
-@app.route("/", methods=["GET", "POST"])
-@app.route("/maestros")
+@app.route("/maestros", methods=["GET", "POST"])
 def maestros():
-	creat_alumno=forms.UserForm(request.form)
+	creat_maestro=forms.MaestroForm(request.form)
 	maestros=Maestros.query.all()
-	return render_template("maestros.html", form=creat_alumno, maestros=maestros)
+	return render_template("maestros.html", form=creat_maestro, maestros=maestros)
 
 @app.route("/usuarios", methods=["GET", "POST"])
 def usuarios():
