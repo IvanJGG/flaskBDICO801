@@ -1,2 +1,3 @@
 .env
 node__modules
+migrations
