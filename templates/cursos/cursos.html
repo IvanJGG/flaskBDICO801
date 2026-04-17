@@ -2,8 +2,8 @@
 
 <div class="py-32 relative overflow-x-auto sm:rounded-lg">
   <a
-    href="/nuevo_maestro"
-    class="bg-green-500 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-green-600"
+    href="{{ url_for('curso.nuevo_curso') }}"
+    class="w-max mb-4 bg-green-500 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-green-600"
   >
     <svg
       class="w-6 h-6 text-white-800 dark:text-white"
@@ -23,7 +23,7 @@
       />
     </svg>
 
-    Nuevo
+    Nuevo Curso
   </a>
   <table
     class="py-2 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -33,25 +33,19 @@
     >
       <tr>
         <th scope="col" class="px-6 py-3">
-          <div class="flex items-center">Nombre</div>
+          <div class="flex items-center">Curso</div>
         </th>
         <th scope="col" class="px-6 py-3">
-          <div class="flex items-center">Apaterno</div>
+          <div class="flex items-center">Descripción</div>
         </th>
         <th scope="col" class="px-6 py-3">
-          <div class="flex items-center">Amaterno</div>
-        </th>
-        <th scope="col" class="px-6 py-3">
-          <div class="flex items-center">Matrícula</div>
-        </th>
-        <th scope="col" class="px-6 py-3">
-          <div class="flex items-center">Correo</div>
+          <div class="flex items-center">Maestro</div>
         </th>
         <th scope="col" class="px-6 py-3">
           <div class="flex items-center">Editar</div>
         </th>
         <th scope="col" class="px-6 py-3">
-          <div class="flex items-center">Detalles</div>
+          <div class="flex items-center">Detalles del curso</div>
         </th>
         <th scope="col" class="px-6 py-3">
           <div class="flex items-center">Eliminar</div>
@@ -59,7 +53,7 @@
       </tr>
     </thead>
     <tbody>
-      {%for maestro in maestros%}
+      {%for c in cursos%}
       <tr
         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
       >
@@ -67,16 +61,14 @@
           scope="row"
           class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
         >
-        {{ maestro.nom }}
+        {{ c.nom }}
         </th>
-        <td class="px-6 py-4">{{ maestro.apa }}</td>
-        <td class="px-6 py-4">{{ maestro.ama }}</td>
-        <td class="px-6 py-4">{{ maestro.matricula }}</td>
-        <td class="px-6 py-4">{{ maestro.email }}</td>
+        <td class="px-6 py-4">{{ c.descripcion }}</td>
+        <td class="px-6 py-4">{{ c.maestro_titular.nom }} {{ c.maestro_titular.apa }}</td>
         <td class="px-6 py-4 text-right">
           <a
-            href="/modificar_maestro?id={{ maestro.id }}"
-            class="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
+            href="{{ url_for('curso.modificar_curso', id=c.id) }}"
+            class="flex w-max items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600"
           >
             <svg
               class="w-6 h-6 text-white-800 dark:text-white"
@@ -101,26 +93,19 @@
         </td>
         <td class="px-6 py-4 text-right">
           <a
-            href="/detalles_maestro?id={{ maestro.id }}"
-            class="flex items-center gap-2 bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+            href="{{ url_for('curso.detalles_cursos', id=c.id) }}"
+            class="flex w-max items-center gap-2 bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M10 2a8 8 0 100 16 8 8 0 000-16zM8.5 11l3-3-3-3 1-1 4 4-4 4-1-1z"
-              />
+            <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
             </svg>
             Detalles
           </a>
         </td>
         <td class="px-6 py-4 text-right">
           <a
-            href="/eliminar_maestro?id={{ maestro.id }}"
-            class="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            href="{{ url_for('curso.eliminar_cursos', id=c.id) }}"
+            class="flex w-max items-center gap-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
           >
             <svg
               class="w-6 h-6 text-white-800 dark:text-white"

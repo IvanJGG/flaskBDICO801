@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block container %}
+<div class="py-32 relative overflow-x-auto sm:rounded-lg">
+  <div class="max-w-2xl mx-auto bg-white shadow rounded-lg p-6 border border-gray-200">
+    <h1 class="text-2xl font-bold mb-4 text-gray-900">Detalles del Curso</h1>
+
+    <div class="space-y-6 text-gray-700">
+      <div>
+        <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Curso</h2>
+        <p class="mt-2 text-lg text-gray-900">{{ curso.nom }}</p>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Descripción</h2>
+        <p class="mt-2 text-lg text-gray-900">{{ curso.descripcion }}</p>
+      </div>
+
+      <div>
+        <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Maestro asignado</h2>
+        <p class="mt-2 text-lg text-gray-900">
+          {% if curso.maestro_titular %}
+            {{ curso.maestro_titular.nom }} {{ curso.maestro_titular.apa }} {{ curso.maestro_titular.ama }}
+          {% else %}
+            Sin maestro asignado
+          {% endif %}
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="{{ url_for('curso.cursos') }}" class="inline-flex items-center px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">
+        Volver
+      </a>
+      <a href="{{ url_for('curso.modificar_curso', id=curso.id) }}" class="inline-flex items-center px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">
+        Editar curso
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
